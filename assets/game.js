@@ -1,9 +1,9 @@
 'use strict';
 
-
-
-let gameBoard = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+let gameBoard = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
 let count = 0;
+let playerX = 0;
+let playerO = 0;
 
 const displayBoard = function () {
   for (let i = 0; i < gameBoard.length; i += 3) {
@@ -25,6 +25,11 @@ const playerOTurn = function () {
 };
 
 const executeGame = function () {
+  if (count % 2 === 0) {
+    console.log('Player X select index to mutate');
+  } else {
+    console.log('Player O select index to mutate');
+  }
   displayBoard();
 };
 
@@ -35,7 +40,8 @@ const mutateBoard = function (index) {
   } else {
     gameBoard[index] = 'o';
     count ++;
-  }
+    }
+  playerTurn(count);
 };
 
 const checkHorizontalWin = function () {
@@ -50,7 +56,6 @@ const checkOWins = function () {
 const resetGame = function () {
   gameBoard = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
   count = 0;
-  displayBoard();
   playerTurn(count);
 };
 
@@ -58,6 +63,8 @@ const resetGame = function () {
 
 
 module.export = {
+  playerX,
+  playerO,
   displayBoard,
   resetGame,
   checkOWins,
