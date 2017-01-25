@@ -46,6 +46,12 @@ Game.prototype.playerTurn = function () {
   this.displayBoard();
 };
 
+Game.prototype.resetGame = function () {
+  this.gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
+  this.count = 0;
+  this.playerTurn(count);
+};
+
 Game.prototype.executeGame = function () {
   this.resetGame();
   if (this.count % 2 === 0) {
@@ -87,10 +93,10 @@ Game.prototype.mutateBoard = function (index) {
   this.checkWinner();
 };
 
-
-
-
 module.export = {
   gameBoard,
-  count
+  count,
+  Game,
+  playerXWins,
+  playerOWins
 };
