@@ -1,6 +1,6 @@
 'use strict';
 
-let gameBoard = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
+let gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
 let count = 0;
 let playerX = 0;
 let playerO = 0;
@@ -11,7 +11,7 @@ const displayBoard = function () {
   }
 };
 
-const playerTurn = function (count) {
+const playerTurn = function () {
   if (count % 2 === 0) {
     console.log('Player X select index to mutate');
   } else {
@@ -34,13 +34,16 @@ const executeGame = function () {
 };
 
 const mutateBoard = function (index) {
-  if (count % 2 === 0) {
+  if (count % 2 === 0 && gameBoard[index] === '_') {
     gameBoard[index] = 'x';
     count ++;
-  } else {
+  } else if (count % 2 !== 0 && gameBoard[index] === '_') {
     gameBoard[index] = 'o';
     count ++;
-    }
+  } else {
+    console.log('select another spot');
+    playerTurn(count);
+  }
   playerTurn(count);
 };
 
