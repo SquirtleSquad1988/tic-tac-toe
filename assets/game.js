@@ -1,5 +1,7 @@
 'use strict';
 
+
+
 let gameBoard = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
 let count = 0;
 
@@ -9,14 +11,21 @@ const displayBoard = function () {
   }
 };
 
-const playerTurn = function () {
+const playerTurn = function (count) {
   if (count % 2 === 0) {
-
+    console.log('Player X select index to mutate');
+  } else {
+    console.log('Player O select index to mutate');
   }
+  displayBoard();
 };
 
 const playerOTurn = function () {
 
+};
+
+const executeGame = function () {
+  displayBoard();
 };
 
 const mutateBoard = function (index) {
@@ -29,21 +38,32 @@ const mutateBoard = function (index) {
   }
 };
 
-
-
-const checkXWins = function () {
-
+const checkHorizontalWin = function () {
+    if (gameBoard === []){}
 };
+
 
 const checkOWins = function () {
 
 };
 
-const resetGame = function () {}
+const resetGame = function () {
+  gameBoard = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+  count = 0;
+  displayBoard();
+  playerTurn(count);
+};
 
 
 
 
 module.export = {
-  displayBoard
+  displayBoard,
+  resetGame,
+  checkOWins,
+  checkHorizontalWin,
+  mutateBoard,
+  executeGame,
+  playerTurn,
+  playerOTurn
 };
