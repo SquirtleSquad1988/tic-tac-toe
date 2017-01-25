@@ -2,8 +2,8 @@
 
 let gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
 let count = 0;
-let playerX = 0;
-let playerO = 0;
+let playerXWins = 0;
+let playerOWins = 0;
 
 const winCondition = function (player, indexOne, indexTwo, indexThree) {
   return (indexOne === player) && (indexTwo === player) && (indexThree === player);
@@ -41,20 +41,31 @@ const playerTurn = function () {
   displayBoard();
 };
 
-const playerOTurn = function () {
-
+const resetGame = function () {
+  gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
+  count = 0;
+  playerTurn(count);
 };
 
-const checkOWins = function () {
-
+let executeGame = function () {
+  resetGame();
+  if (count % 2 === 0) {
+    console.log('Player X select index to mutate');
+  } else {
+    console.log('Player O select index to mutate');
+  }
 };
 
 const checkWinner = function () {
   if (checkHorizontalWin('x') || checkVerticalWin('x') || checkDiagonalWin('x')) {
     console.log('X is the winner');
+    displayBoard();
+    playerXWins += 1;
     return true;
   } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
+    displayBoard();
     console.log('O is the winner');
+    playerOWins += 1;
     return true;
   } else if (count === 9) {
     displayBoard();
@@ -62,16 +73,6 @@ const checkWinner = function () {
   } else {
     playerTurn(count);
   }
-};
-
-
-let executeGame = function () {
-  if (count % 2 === 0) {
-    console.log('Player X select index to mutate');
-  } else {
-    console.log('Player O select index to mutate');
-  }
-  displayBoard();
 };
 
 //May have to change this in case I want to change default values of array
@@ -83,38 +84,10 @@ const mutateBoard = function (index) {
     gameBoard[index] = 'o';
     count ++;
   } else {
-    console.log('select another spot');
-    playerTurn(count);
+    console.log('Select another spot:');
   }
   checkWinner();
 };
-
-const resetGame = function () {
-  gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
-  count = 0;
-  playerTurn(count);
-};
-
-// const allThree = function (player, indexOne, indexTwo, indexThree) {
-//   return (indexOne === player) && (indexTwo === player) && (indexThree === player);
-// };
-//
-// const checkHorizontalWin = function (player) {
-//   return allThree(player, gameBoard[0], gameBoard[1], gameBoard[2]) ||
-//          allThree(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
-//          allThree(player, gameBoard[6], gameBoard[7], gameBoard[8]);
-// };
-//
-// const checkDiagonalWin = function (player) {
-//   return allThree(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
-//          allThree(player, gameBoard[2], gameBoard[4], gameBoard[6]);
-// };
-//
-// const checkVerticalWin = function (player) {
-//   return allThree(player, gameBoard[0], gameBoard[3], gameBoard[6]) ||
-//          allThree(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
-//          allThree(player, gameBoard[2], gameBoard[5], gameBoard[8]);
-// };
 
 //If these functions are unacceptable for determining a winner
 // I can use the slice method to check if certain sections of
@@ -122,16 +95,14 @@ const resetGame = function () {
 // gameBoard[0] + gameBoard[4] + gameBoard[8] === "xxx"
 
 module.export = {
-  playerX,
-  playerO,
+  playerXWins,
+  playerOWins,
   displayBoard,
   resetGame,
-  checkOWins,
   checkHorizontalWin,
   mutateBoard,
   executeGame,
   playerTurn,
-  playerOTurn,
   checkDiagonalWin,
   checkVerticalWin,
   checkWinner,
