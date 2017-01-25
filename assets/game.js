@@ -47,9 +47,7 @@ const mutateBoard = function (index) {
   playerTurn(count);
 };
 
-const checkHorizontalWin = function () {
-    if (gameBoard === []){}
-};
+
 
 
 const checkOWins = function () {
@@ -62,6 +60,26 @@ const resetGame = function () {
   playerTurn(count);
 };
 
+const allThree = function (player, indexOne, indexTwo, indexThree) {
+  return (indexOne === player) && (indexTwo === player) && (indexThree === player);
+};
+
+const checkHorizontalWin = function (player) {
+  return allThree(player, gameBoard[0], gameBoard[1], gameBoard[2]) ||
+         allThree(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
+         allThree(player, gameBoard[6], gameBoard[7], gameBoard[8]);
+};
+
+const checkDiagonalWin = function (player) {
+  return allThree(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
+         allThree(player, gameBoard[2], gameBoard[4], gameBoard[6]);
+};
+
+const checkVerticalWin = function (player) {
+  return allThree(player, gameBoard[0], gameBoard[3], gameBoard[6]) ||
+         allThree(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
+         allThree(player, gameBoard[2], gameBoard[5], gameBoard[8]);
+};
 
 
 
@@ -75,5 +93,7 @@ module.export = {
   mutateBoard,
   executeGame,
   playerTurn,
-  playerOTurn
+  playerOTurn,
+  checkDiagonalWin,
+  checkVerticalWin
 };
