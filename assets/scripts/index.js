@@ -7,112 +7,127 @@ const ticTacToe = require('../game');
 $(() => {
   setAPIOrigin(location, config);
 });
+let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let playerXWins = 0;
+let playerOWins = 0;
+let count = 0;
 
-// const ticTacToe = require("../../game.js");
-//
-// $('.square').on('click', .mutateBoard());
-//
-// // use require with a reference to bundle the file and use it in this file
-// // const example = require('./example');
-//
-// // use require without a reference to ensure a file is bundled
-// require('./example');
-//
-// module.export = {
-//   ticTacToe,
-//   game
-// };
+
+const winCondition = function (player, indexOne, indexTwo, indexThree) {
+  return (indexOne === player) && (indexTwo === player) && (indexThree === player);
+};
+
+const checkHorizontalWin = function (player) {
+  return winCondition(player, gameBoard[0], gameBoard[1], gameBoard[2]) ||
+         winCondition(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
+         winCondition(player, gameBoard[6], gameBoard[7], gameBoard[8]);
+};
+
+const checkDiagonalWin = function (player) {
+  return winCondition(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
+         winCondition(player, gameBoard[2], gameBoard[4], gameBoard[6]);
+};
+
+const checkVerticalWin = function (player) {
+  return winCondition(player, gameBoard[0], gameBoard[3], gameBoard[6]) ||
+         winCondition(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
+         winCondition(player, gameBoard[2], gameBoard[5], gameBoard[8]);
+};
+
+let displayBoard = function () {
+  for (let i = 0; i < gameBoard.length; i += 3) {
+    console.log(gameBoard[i] + ' | ' + gameBoard[i + 1] + ' | ' + gameBoard[i + 2]);
+  }
+};
+
+let playerTurn = function () {
+  if (count % 2 === 0) {
+    console.log('Player X select index to mutate');
+  } else {
+    console.log('Player O select index to mutate');
+  }
+  displayBoard();
+};
+
+let resetGame = function () {
+  gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+  count = 0;
+  playerTurn(count);
+  $('.square').text('_');
+};
+
+const checkWinner = function () {
+  if (checkHorizontalWin('x') || checkVerticalWin('x') || checkDiagonalWin('x')) {
+    console.log('X is the winner');
+    displayBoard();
+    playerXWins += 1;
+    return true;
+  } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
+    displayBoard();
+    console.log('O is the winner');
+    playerOWins += 1;
+    return true;
+  } else if (count === 9) {
+    displayBoard();
+    console.log('Draw!');
+  } else {
+    playerTurn(count);
+  }
+};
+
+
+let xEvent = function () {
+  if (checkWinner()){
+    return;
+  } else if(count % 2 !== 0 && $(this).text() === '_') {
+    let classStr = $(this).attr('class');
+    let classNum = parseInt(classStr);
+    $(this).text('o');
+    gameBoard[classNum] = 'o';
+    checkWinner();
+    count++;
+    console.log(count);
+    console.log('classStr:' + classStr);
+    console.log('classNum:' + classNum);
+    console.log(gameBoard);
+  }
+};
+
+let oEvent = function () {
+  if (checkWinner()) {
+    return;
+  } else if (count % 2 === 0 && $(this).text() === '_') {
+    let classStr = $(this).attr('class');
+    let classNum = parseInt(classStr);
+    $(this).text('x');
+    gameBoard[classNum] = 'x';
+    count ++;
+    checkWinner();
+    console.log(count);
+    console.log('classStr:' + classStr);
+    console.log('classNum:' + classNum);
+    console.log(gameBoard);
+  }
+};
+
+
+
+
 
 // const authEvents = require('../../game.js');
 
-let count = 0;
 
-let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-//
+
 $(document).ready(ticTacToe.createBoard());
-//
-// // $(document).ready(createBoard());
 
-// const mutateArrayX = function () {
-//   let classStr = $(this).attr('class');
-//   let classNum = parseInt(classStr);
-//   board[classNum] = 'x';
-//   console.log(classStr);
-//   console.log(classNum);
-//   console.log(board);
-// };
-//
-// const mutateArrayO = function () {
-//   let classStr = $(this).attr('class');
-//   let classNum = parseInt(classStr);
-//   board[classNum] = 'o';
-//   console.log(classStr);
-//   console.log(classNum);
-//   console.log(board);
-// };
+
 $(() => {
-  $('.square').on('click', function () {
-    if (count % 2 !== 0 && $(this).text() === '_') {
-      let classStr = $(this).attr('class');
-      let classNum = parseInt(classStr);
-      $(this).text('o');
-      board[classNum] = 'o';
-      count++;
-      console.log(count);
-      console.log('classStr:' + classStr);
-      console.log('classNum:' + classNum);
-      console.log(board);
-    }
-  });
+  $('.square').on('click', xEvent);
 });
 
-
 $(() =>  {
-    $('.square').on('click', function () {
-      if (count % 2 === 0 && $(this).text() === '_') {
-        let classStr = $(this).attr('class');
-        let classNum = parseInt(classStr);
-        $(this).text('x');
-        board[classNum] = 'x';
-        count ++;
-        console.log(count);
-        console.log('classStr:' + classStr);
-        console.log('classNum:' + classNum);
-        console.log(board);
-      }
-    });
-  });
-
-
-
-
-
-// change game.js functions to jquery. Maybe not just look at the code tomorrow and determine best course of action.
-// On document ready
-
-// $(document).ready(function () {
-//     $('.square').on('click', function() {
-//       if (count % 2 === 0 && $(this).text() === '_') {
-//         $(this).text('x');
-//         // mutateArrayX();
-//         count ++;
-//         console.log(count);
-//       } else if (count % 2 !== 0 && $(this).text() === '_') {
-//         $(this).text('o');
-//         count ++;
-//         // mutateArrayO();
-//         console.log(count);
-//       } else {
-//         console.log('try again');
-//         console.log(count);
-//       }
-//     });
-//   });
-
-// $('.square').on('click', function() {
-//     let id = $(this).attr('id');
-//     $('#' + id).text('x');
-// });
+    $('.square').on('click', oEvent);
+});
 
 //parseInt function
 //.bind function
