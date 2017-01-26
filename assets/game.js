@@ -95,7 +95,7 @@ Game.prototype.mutateBoard = function (index) {
 
 const createBoard = function () {
   for (let i = 0; i < 9; i++) {
-    let node = $('<div id=' + i + ' class="square"></div>');
+    let node = $('<div class=' + i + '>_</div>').addClass('square');
     $('.game-board').append(node);
   }
 };
@@ -108,7 +108,7 @@ const addHandlers = () => {
 };
 
 
-module.export = {
+module.exports = {
   gameBoard,
   count,
   Game,
