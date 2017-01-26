@@ -27,36 +27,87 @@ $(() => {
 
 let count = 0;
 
-const createBoard = function () {
-  for (let i = 0; i < 9; i++) {
-    let node = $('<div id=' + i + ' class="square">_</div>');
-    $('.game-board').append(node);
-  }
-};
+let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+//
+$(document).ready(ticTacToe.createBoard());
+//
+// // $(document).ready(createBoard());
 
-//$(document).ready(ticTacToe.createBoard());
+// const mutateArrayX = function () {
+//   let classStr = $(this).attr('class');
+//   let classNum = parseInt(classStr);
+//   board[classNum] = 'x';
+//   console.log(classStr);
+//   console.log(classNum);
+//   console.log(board);
+// };
+//
+// const mutateArrayO = function () {
+//   let classStr = $(this).attr('class');
+//   let classNum = parseInt(classStr);
+//   board[classNum] = 'o';
+//   console.log(classStr);
+//   console.log(classNum);
+//   console.log(board);
+// };
+$(() => {
+  $('.square').on('click', function () {
+    if (count % 2 !== 0 && $(this).text() === '_') {
+      let classStr = $(this).attr('class');
+      let classNum = parseInt(classStr);
+      $(this).text('o');
+      board[classNum] = 'o';
+      count++;
+      console.log(count);
+      console.log('classStr:' + classStr);
+      console.log('classNum:' + classNum);
+      console.log(board);
+    }
+  });
+});
 
-$(document).ready(createBoard());
+
+$(() =>  {
+    $('.square').on('click', function () {
+      if (count % 2 === 0 && $(this).text() === '_') {
+        let classStr = $(this).attr('class');
+        let classNum = parseInt(classStr);
+        $(this).text('x');
+        board[classNum] = 'x';
+        count ++;
+        console.log(count);
+        console.log('classStr:' + classStr);
+        console.log('classNum:' + classNum);
+        console.log(board);
+      }
+    });
+  });
+
+
+
+
 
 // change game.js functions to jquery. Maybe not just look at the code tomorrow and determine best course of action.
 // On document ready
 
-$(document).ready(function () {
-    $('.square').on('click', function(event) {
-      if (count % 2 === 0 && $(this).text() === '_') {
-        $(this).text('x');
-        count ++;
-        console.log(count);
-      } else if (count % 2 !== 0 && $(this).text() === '_') {
-        $(this).text('o');
-        count ++;
-        console.log(count);
-      } else {
-        console.log('try again');
-        console.log(count);
-      }
-    });
-  });
+// $(document).ready(function () {
+//     $('.square').on('click', function() {
+//       if (count % 2 === 0 && $(this).text() === '_') {
+//         $(this).text('x');
+//         // mutateArrayX();
+//         count ++;
+//         console.log(count);
+//       } else if (count % 2 !== 0 && $(this).text() === '_') {
+//         $(this).text('o');
+//         count ++;
+//         // mutateArrayO();
+//         console.log(count);
+//       } else {
+//         console.log('try again');
+//         console.log(count);
+//       }
+//     });
+//   });
 
 // $('.square').on('click', function() {
 //     let id = $(this).attr('id');
