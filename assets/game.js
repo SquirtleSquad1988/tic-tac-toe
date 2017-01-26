@@ -100,6 +100,10 @@ const createBoard = function () {
   }
 };
 
+const deleteBoard = function () {
+  $('.square').remove();
+};
+
 const addHandlers = () => {
   $('.square').on('click', function() {
     let divClass = (this).attr("id");
