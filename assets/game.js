@@ -1,110 +1,119 @@
 'use strict';
 
-let gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
+let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let count = 0;
 let playerXWins = 0;
 let playerOWins = 0;
 
-const winCondition = function (player, indexOne, indexTwo, indexThree) {
+let Game = function (board) {
+  this.gameBoard = board;
+  this.count = 0;
+};
+
+Game.prototype.winCondition = function (player, indexOne, indexTwo, indexThree) {
   return (indexOne === player) && (indexTwo === player) && (indexThree === player);
 };
 
-const checkHorizontalWin = function (player) {
-  return winCondition(player, gameBoard[0], gameBoard[1], gameBoard[2]) ||
-         winCondition(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
-         winCondition(player, gameBoard[6], gameBoard[7], gameBoard[8]);
+Game.prototype.checkHorizontalWin = function (player) {
+  return this.winCondition(player, gameBoard[0], gameBoard[1], gameBoard[2]) ||
+         this.winCondition(player, gameBoard[3], gameBoard[4], gameBoard[5]) ||
+         this.winCondition(player, gameBoard[6], gameBoard[7], gameBoard[8]);
 };
 
-const checkDiagonalWin = function (player) {
-  return winCondition(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
-         winCondition(player, gameBoard[2], gameBoard[4], gameBoard[6]);
+Game.prototype.checkDiagonalWin = function (player) {
+  return this.winCondition(player, gameBoard[0], gameBoard[4], gameBoard[8]) ||
+         this.winCondition(player, gameBoard[2], gameBoard[4], gameBoard[6]);
 };
 
-const checkVerticalWin = function (player) {
-  return winCondition(player, gameBoard[0], gameBoard[3], gameBoard[6]) ||
-         winCondition(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
-         winCondition(player, gameBoard[2], gameBoard[5], gameBoard[8]);
+Game.prototype.checkVerticalWin = function (player) {
+  return this.winCondition(player, gameBoard[0], gameBoard[3], gameBoard[6]) ||
+         this.winCondition(player, gameBoard[1], gameBoard[4], gameBoard[7]) ||
+         this.winCondition(player, gameBoard[2], gameBoard[5], gameBoard[8]);
 };
 
-const displayBoard = function () {
-  for (let i = 0; i < gameBoard.length; i += 3) {
-    console.log(gameBoard[i] + ' | ' + gameBoard[i + 1] + ' | ' + gameBoard[i + 2]);
+Game.prototype.displayBoard = function () {
+  for (let i = 0; i < this.gameBoard.length; i += 3) {
+    console.log(this.gameBoard[i] + ' | ' + this.gameBoard[i + 1] + ' | ' + this.gameBoard[i + 2]);
   }
 };
 
-const playerTurn = function () {
-  if (count % 2 === 0) {
+Game.prototype.playerTurn = function () {
+  if (this.count % 2 === 0) {
     console.log('Player X select index to mutate');
   } else {
     console.log('Player O select index to mutate');
   }
-  displayBoard();
+  this.displayBoard();
 };
 
-const resetGame = function () {
-  gameBoard = ['_', '_', '_', '_', '_', '_', '_', '_', '_'];
-  count = 0;
-  playerTurn(count);
+Game.prototype.resetGame = function () {
+  this.gameBoard = [];
+  this.count = 0;
+  this.playerTurn(count);
 };
 
-let executeGame = function () {
-  resetGame();
-  if (count % 2 === 0) {
+Game.prototype.executeGame = function () {
+  this.resetGame();
+  if (this.count % 2 === 0) {
     console.log('Player X select index to mutate');
   } else {
     console.log('Player O select index to mutate');
   }
 };
 
-const checkWinner = function () {
-  if (checkHorizontalWin('x') || checkVerticalWin('x') || checkDiagonalWin('x')) {
+Game.prototype.checkWinner = function () {
+  if (this.checkHorizontalWin('x') || this.checkVerticalWin('x') || this.checkDiagonalWin('x')) {
     console.log('X is the winner');
-    displayBoard();
+    this.displayBoard();
     playerXWins += 1;
     return true;
-  } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
-    displayBoard();
+  } else if (this.checkHorizontalWin('o') || this.checkVerticalWin('o') || this.checkDiagonalWin('o')) {
+    this.displayBoard();
     console.log('O is the winner');
     playerOWins += 1;
     return true;
-  } else if (count === 9) {
-    displayBoard();
+  } else if (this.count === 9) {
+    this.displayBoard();
     console.log('Draw!');
   } else {
-    playerTurn(count);
+    this.playerTurn(count);
   }
 };
 
-//May have to change this in case I want to change default values of array
-const mutateBoard = function (index) {
-  if (count % 2 === 0 && gameBoard[index] === '_') {
-    gameBoard[index] = 'x';
-    count ++;
-  } else if (count % 2 !== 0 && gameBoard[index] === '_') {
-    gameBoard[index] = 'o';
-    count ++;
+Game.prototype.mutateBoard = function (index) {
+  if (this.count % 2 === 0 && this.gameBoard[index] === index) {
+    this.gameBoard[index] = 'x';
+    this.count ++;
+  } else if (this.count % 2 !== 0 && this.gameBoard[index] === index) {
+    this.gameBoard[index] = 'o';
+    this.count ++;
   } else {
     console.log('Select another spot:');
   }
-  checkWinner();
+  this.checkWinner();
 };
 
-//If these functions are unacceptable for determining a winner
-// I can use the slice method to check if certain sections of
-// the array are all x's or o's. or possibly if:
-// gameBoard[0] + gameBoard[4] + gameBoard[8] === "xxx"
+const createBoard = function () {
+  for (let i = 0; i < 9; i++) {
+    let node = $('<div id=' + i + ' class="square"></div>');
+    $('.game-board').append(node);
+  }
+};
+
+const addHandlers = () => {
+  $('.square').on('click', function() {
+    let divClass = (this).attr("id");
+    $(divClass).text('x');
+  });
+};
+
 
 module.export = {
+  gameBoard,
+  count,
+  Game,
   playerXWins,
   playerOWins,
-  displayBoard,
-  resetGame,
-  checkHorizontalWin,
-  mutateBoard,
-  executeGame,
-  playerTurn,
-  checkDiagonalWin,
-  checkVerticalWin,
-  checkWinner,
-  winCondition
+  addHandlers,
+  createBoard,
 };
