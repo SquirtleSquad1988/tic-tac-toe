@@ -39,10 +39,15 @@ const onLogGame = function (event) {
 const onCreateGame = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
-  api.post(data)
+  api.createGame(data)
   .then(ui.onPostSuccess)
   .catch(ui.onError);
 };
+
+
+$(() => {
+  $('.new').on('click', onCreateGame);
+});
 
 module.exports = {
   onShowGame,

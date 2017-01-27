@@ -3,16 +3,18 @@
 const setAPIOrigin = require('../../lib/set-api-origin');
 const config = require('./config');
 const ticTacToe = require('../game');
+const handlers = require('./auth/events');
+const poop = require('./server-stuff/events');
 
 $(() => {
   setAPIOrigin(location, config);
 });
+
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let whichPlayer = 'X';
 let playerXWins = 0;
 let playerOWins = 0;
 let count = 0;
-
 
 const winCondition = function (player, indexOne, indexTwo, indexThree) {
   return (indexOne === player) && (indexTwo === player) && (indexThree === player);
@@ -35,13 +37,13 @@ const checkVerticalWin = function (player) {
          winCondition(player, gameBoard[2], gameBoard[5], gameBoard[8]);
 };
 
-let displayBoard = function () {
+const displayBoard = function () {
   for (let i = 0; i < gameBoard.length; i += 3) {
     console.log(gameBoard[i] + ' | ' + gameBoard[i + 1] + ' | ' + gameBoard[i + 2]);
   }
 };
 
-let playerTurn = function () {
+const playerTurn = function () {
   if (count % 2 === 0) {
     console.log('Player X select index to mutate');
   } else {
@@ -50,7 +52,7 @@ let playerTurn = function () {
   displayBoard();
 };
 
-let resetGame = function () {
+const resetGame = function () {
   event.preventDefault();
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   count = 0;
@@ -127,11 +129,12 @@ let oEvent = function () {
 
 // const authEvents = require('../../game.js');
 
-
+$(document).ready('click', handlers.addHandlers);
 
 $(document).ready(ticTacToe.createBoard());
 
 $(() => {
+  $('.new').on('click', poop.onCreateGame);
   $('.reset').on('click', resetGame);
   $('.square').on('click', oEvent);
   $('.square').on('click', xEvent);

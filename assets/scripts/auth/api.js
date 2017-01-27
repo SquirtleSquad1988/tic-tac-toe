@@ -21,7 +21,7 @@ const signIn = function (data) {
 
 const passwordChange = function (data) {
   return $.ajax({
-    url: config.apiOrigin + '/password-change',
+    url: `${config.apiOrigin}/password-change/${store.user.id}`,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`

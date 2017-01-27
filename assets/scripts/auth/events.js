@@ -7,16 +7,16 @@ const ui = require('./ui');
 const store = require('../store');
 
 const onSignUp = function (event) {
-  let data = getFormFields(event.target);
   event.preventDefault();
+  let data = getFormFields(event.target);
   api.signUp(data)
     .then(ui.success)
     .catch(ui.failure);
 };
 
 const onSignIn = function (event) {
-  let data = getFormFields(event.target);
   event.preventDefault();
+  let data = getFormFields(event.target);
   api.signIn(data)
     .then((response) => {
       store.user = response.user;

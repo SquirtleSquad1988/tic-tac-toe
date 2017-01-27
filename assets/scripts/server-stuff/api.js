@@ -56,8 +56,6 @@ const logGame = function (data, id) {
   });
 };
 
-
-
 module.exports = {
   showGame,
   showGames,
