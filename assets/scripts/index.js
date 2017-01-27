@@ -50,10 +50,12 @@ let playerTurn = function () {
 };
 
 let resetGame = function () {
+  event.preventDefault();
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   count = 0;
   playerTurn(count);
   $('.square').text('_');
+  $('.winner').text('');
 };
 
 const checkWinner = function () {
@@ -80,6 +82,7 @@ const checkWinner = function () {
 
 
 let xEvent = function () {
+  event.preventDefault();
   if (checkWinner()){
     return;
   } else if(count % 2 !== 0 && $(this).text() === '_') {
@@ -97,6 +100,7 @@ let xEvent = function () {
 };
 
 let oEvent = function () {
+    event.preventDefault();
   if (checkWinner()) {
     return;
   } else if (count % 2 === 0 && $(this).text() === '_') {
@@ -123,18 +127,14 @@ let oEvent = function () {
 
 $(document).ready(ticTacToe.createBoard());
 
-
 $(() => {
+  $('.reset').on('click', resetGame);
+  $('.square').on('click', oEvent);
   $('.square').on('click', xEvent);
 });
 
-$(() => {
-  $('.reset').on('click', resetGame);
-});
 
-$(() =>  {
-    $('.square').on('click', oEvent);
-});
+
 
 //parseInt function
 //.bind function
