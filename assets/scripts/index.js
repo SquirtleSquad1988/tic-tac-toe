@@ -61,13 +61,16 @@ const checkWinner = function () {
     console.log('X is the winner');
     displayBoard();
     playerXWins += 1;
+    $('.winner').text('X Wins!');
     return true;
   } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
     displayBoard();
     console.log('O is the winner');
+    $('.winner').text('O Wins!');
     playerOWins += 1;
     return true;
   } else if (count === 9) {
+    $('.winner').text('Draw!');
     displayBoard();
     console.log('Draw!');
   } else {
@@ -123,6 +126,10 @@ $(document).ready(ticTacToe.createBoard());
 
 $(() => {
   $('.square').on('click', xEvent);
+});
+
+$(() => {
+  $('.reset').on('click', resetGame);
 });
 
 $(() =>  {
