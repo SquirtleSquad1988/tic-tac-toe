@@ -129,7 +129,7 @@ let oEvent = function () {
 
 // const authEvents = require('../../game.js');
 
-$(document).ready('click', handlers.addHandlers);
+$(document).ready(handlers.addHandlers);
 
 $(document).ready(ticTacToe.createBoard());
 
