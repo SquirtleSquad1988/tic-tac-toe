@@ -8,6 +8,7 @@ $(() => {
   setAPIOrigin(location, config);
 });
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let whichPlayer = 'X';
 let playerXWins = 0;
 let playerOWins = 0;
 let count = 0;
@@ -85,11 +86,12 @@ let xEvent = function () {
   event.preventDefault();
   if (checkWinner()){
     return;
-  } else if(count % 2 !== 0 && $(this).text() === '_') {
+  } else if(whichPlayer === 'O' && $(this).text() === '_') {
     let classStr = $(this).attr('class');
     let classNum = parseInt(classStr);
     $(this).text('o');
     gameBoard[classNum] = 'o';
+    whichPlayer = 'X';
     checkWinner();
     count++;
     console.log(count);
@@ -103,11 +105,12 @@ let oEvent = function () {
     event.preventDefault();
   if (checkWinner()) {
     return;
-  } else if (count % 2 === 0 && $(this).text() === '_') {
+  } else if (whichPlayer === 'X' && $(this).text() === '_') {
     let classStr = $(this).attr('class');
     let classNum = parseInt(classStr);
     $(this).text('x');
     gameBoard[classNum] = 'x';
+    whichPlayer = 'O';
     count ++;
     checkWinner();
     console.log(count);

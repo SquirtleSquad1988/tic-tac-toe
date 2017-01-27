@@ -1,6 +1,6 @@
 'use strict';
 
-let api = config('./auth/api');
+let api = require('./auth/api');
 
 let game = {
   game:   {
