@@ -2,7 +2,7 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin');
 const config = require('./config');
-// const ticTacToe = require('../game');
+const ticTacToe = require('../game');
 const handlers = require('./auth/events');
 const poop = require('./server-stuff/events');
 
