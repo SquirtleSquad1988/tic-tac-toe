@@ -24,6 +24,7 @@ const showGames = function () {
 };
 
 const updateGame = function (indx, currentPlayer, state) {
+  console.log('the current argument are: ', indx, currentPlayer, state);
   return $.ajax({
     url: config.apiOrigin + '/games/' + store.game.id,
     headers: {

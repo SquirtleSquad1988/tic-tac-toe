@@ -51,7 +51,9 @@ const onCreateGame = function (event) {
 
 const onUpdateGame = function (event) {
   event.preventDefault();
-  api.updateGame(parseInt(event.target.class), index.whichPlayer, index.gameOver)
+  const ind = index;
+  debugger;
+  api.updateGame(+$(this).data('index'), whichPlayer, gameOver)
   .then(ui.onPostSuccess)
   .catch(ui.onError);
 };
