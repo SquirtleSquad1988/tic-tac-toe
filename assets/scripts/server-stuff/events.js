@@ -2,8 +2,8 @@
 
 const api = require('./api.js');
 const ui = require('./ui.js');
-const index = require('../index');
 const store = require('../store');
+const index = require('../game-util');
 
 const getFormFields = require('../../../lib/get-form-fields');
 
@@ -51,9 +51,7 @@ const onCreateGame = function (event) {
 
 const onUpdateGame = function (event) {
   event.preventDefault();
-  const ind = index;
-  debugger;
-  api.updateGame(+$(this).data('index'), whichPlayer, gameOver)
+  api.updateGame(+$(this).data('index'), index.whichPlayer, index.gameOver)
   .then(ui.onPostSuccess)
   .catch(ui.onError);
 };
