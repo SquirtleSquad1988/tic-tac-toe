@@ -51,7 +51,8 @@ const onCreateGame = function (event) {
 
 const onUpdateGame = function (event) {
   event.preventDefault();
-  api.updateGame(+$(this).data('index'), index.whichPlayer, index.gameOver)
+  //updateUI and checkWinner
+  api.updateGame(+$(this).data('index'), index.whichPlayer.player, index.gameOver.state)
   .then(ui.onPostSuccess)
   .catch(ui.onError);
 };

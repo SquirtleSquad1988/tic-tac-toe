@@ -23,11 +23,12 @@ $(document).ready(handlers.addHandlers);
 // $(document).ready(ticTacToe.createBoard());
 
 $(() => {
+  $('.square').on('click', gameUtil.oEvent);
+  $('.square').on('click', gameUtil.xEvent);
   $('.square').on('click', poop.onUpdateGame);
   $('.new').on('click', poop.onCreateGame);
   $('.reset').on('click', gameUtil.resetGame);
-  $('.square').on('click', gameUtil.oEvent);
-  $('.square').on('click', gameUtil.xEvent);
+
 });
 
 

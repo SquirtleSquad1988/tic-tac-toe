@@ -1,10 +1,10 @@
 'use strict';
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-let whichPlayer = 'X';
+let whichPlayer = {player: 'X'};
 let playerXWins = 0;
 let playerOWins = 0;
 let count = 0;
-let gameOver = false;
+let gameOver = {state: false};
 
 const winCondition = function (player, indexOne, indexTwo, indexThree) {
   return (indexOne === player) && (indexTwo === player) && (indexThree === player);
@@ -47,10 +47,10 @@ const resetGame = function () {
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   count = 0;
   playerTurn(count);
-  whichPlayer = 'X';
+  whichPlayer.player = 'X';
   $('.square').text('_');
   $('.winner').text('');
-  gameOver = false;
+  gameOver.state = false;
 };
 
 const checkWinner = function () {
@@ -59,20 +59,20 @@ const checkWinner = function () {
     displayBoard();
     playerXWins += 1;
     $('.winner').text('X Wins!');
-    gameOver = true;
+    gameOver.state = true;
     return true;
   } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
     displayBoard();
     console.log('O is the winner');
     $('.winner').text('O Wins!');
     playerOWins += 1;
-    gameOver = true;
+    gameOver.state = true;
     return true;
   } else if (count === 9) {
     $('.winner').text('Draw!');
     displayBoard();
     console.log('Draw!');
-    gameOver = true;
+    gameOver.state = true;
   } else {
     playerTurn(count);
   }
@@ -83,12 +83,12 @@ let xEvent = function () {
   event.preventDefault();
   if (checkWinner()){
     return;
-  } else if(whichPlayer === 'O' && $(this).text() === '_') {
+  } else if(whichPlayer.player === 'O' && $(this).text() === '_') {
     let classStr = $(this).attr('class');
     let classNum = parseInt(classStr);
     $(this).text('o');
     gameBoard[classNum] = 'o';
-    whichPlayer = 'X';
+    whichPlayer.player = 'X';
     checkWinner();
     count++;
     console.log(count);
@@ -102,12 +102,12 @@ let oEvent = function () {
     event.preventDefault();
   if (checkWinner()) {
     return;
-  } else if (whichPlayer === 'X' && $(this).text() === '_') {
+  } else if (whichPlayer.player === 'X' && $(this).text() === '_') {
     let classStr = $(this).attr('class');
     let classNum = parseInt(classStr);
     $(this).text('x');
     gameBoard[classNum] = 'x';
-    whichPlayer = 'O';
+    whichPlayer.player = 'O';
     count ++;
     checkWinner();
     console.log(count);
