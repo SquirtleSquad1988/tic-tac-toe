@@ -2,6 +2,8 @@
 
 const api = require('./api.js');
 const ui = require('./ui.js');
+const index = require('../index');
+const store = require('../store');
 
 const getFormFields = require('../../../lib/get-form-fields');
 
@@ -40,18 +42,25 @@ const onCreateGame = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
   api.createGame(data)
+  .then((response) => {
+    store.game = response.game;
+  })
+  .then(ui.onPostSuccess)
+  .catch(ui.onError);
+};
+
+const onUpdateGame = function (event) {
+  event.preventDefault();
+  api.updateGame(parseInt(event.target.class), index.whichPlayer, index.gameOver)
   .then(ui.onPostSuccess)
   .catch(ui.onError);
 };
 
 
-$(() => {
-  $('.new').on('click', onCreateGame);
-});
-
 module.exports = {
   onShowGame,
   onJoinGame,
   onLogGame,
-  onCreateGame
+  onCreateGame,
+  onUpdateGame
 };

@@ -23,6 +23,25 @@ const showGames = function () {
   });
 };
 
+const updateGame = function (indx, currentPlayer, state) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + store.game.id,
+    headers: {
+      Authorization: `Token token=${store.user.token}`
+    },
+    method: 'PATCH',
+    data: {
+  game: {
+    cell: {
+      index: indx,
+      value: currentPlayer,
+    },
+    over: state
+  }
+}
+  });
+};
+
 const createGame = function (data) {
   return $.ajax({
     url: config.apiOrigin + '/games',
@@ -57,6 +76,7 @@ const logGame = function (data, id) {
 };
 
 module.exports = {
+  updateGame,
   showGame,
   showGames,
   joinGame,

@@ -15,6 +15,7 @@ let whichPlayer = 'X';
 let playerXWins = 0;
 let playerOWins = 0;
 let count = 0;
+let gameOver = false;
 
 const winCondition = function (player, indexOne, indexTwo, indexThree) {
   return (indexOne === player) && (indexTwo === player) && (indexThree === player);
@@ -60,6 +61,7 @@ const resetGame = function () {
   whichPlayer = 'X';
   $('.square').text('_');
   $('.winner').text('');
+  gameOver = false;
 };
 
 const checkWinner = function () {
@@ -68,17 +70,20 @@ const checkWinner = function () {
     displayBoard();
     playerXWins += 1;
     $('.winner').text('X Wins!');
+    gameOver = true;
     return true;
   } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
     displayBoard();
     console.log('O is the winner');
     $('.winner').text('O Wins!');
     playerOWins += 1;
+    gameOver = true;
     return true;
   } else if (count === 9) {
     $('.winner').text('Draw!');
     displayBoard();
     console.log('Draw!');
+    gameOver = true;
   } else {
     playerTurn(count);
   }
@@ -131,9 +136,10 @@ let oEvent = function () {
 
 $(document).ready(handlers.addHandlers);
 
-$(document).ready(ticTacToe.createBoard());
+// $(document).ready(ticTacToe.createBoard());
 
 $(() => {
+  $('.square').on('click', poop.onUpdateGame);
   $('.new').on('click', poop.onCreateGame);
   $('.reset').on('click', resetGame);
   $('.square').on('click', oEvent);
