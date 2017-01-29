@@ -14,7 +14,8 @@ $(() => {
 
 
 
-
+//Why can I import into this file from ./server-stuff/events
+// but not import files from ./server-stuff/events into game-util
 
 // const authEvents = require('../../game.js');
 
@@ -27,8 +28,14 @@ $(() => {
   $('.square').on('click', gameUtil.xEvent);
   $('.square').on('click', poop.onUpdateGame);
   $('.new').on('click', poop.onCreateGame);
-  $('.reset').on('click', gameUtil.resetGame);
-  $('.reset').on('click', poop.resetFun);
+  $('.new').on('click', gameUtil.resetGame);
+  $('.new').on('click', poop.resetFun);
+  $('.new').on('click', function () {
+    event.preventDefault();
+    $('.square').show();
+    $('.game-board').show();
+  });
+
   });
 
 

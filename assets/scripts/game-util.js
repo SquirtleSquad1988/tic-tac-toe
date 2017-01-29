@@ -82,7 +82,7 @@ const checkWinner = function () {
 };
 
 
-let xEvent = function () {
+const xEvent = function () {
   event.preventDefault();
   if (checkWinner()){
     return;
@@ -101,7 +101,7 @@ let xEvent = function () {
   }
 };
 
-let oEvent = function () {
+const oEvent = function () {
     event.preventDefault();
   if (checkWinner()) {
     return;
@@ -120,11 +120,19 @@ let oEvent = function () {
   }
 };
 
+const gameInit = function () {
+  event.preventDefault();
+  $('.square').hide();
+  $('.game-board').hide();
+  };
+
+
 module.exports = {
   whichPlayer,
   gameOver,
   oEvent,
   xEvent,
   resetGame,
-  checkWinner
+  checkWinner,
+  gameInit
 };

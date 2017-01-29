@@ -7,11 +7,12 @@ h1 {
 }
 
 .game-board {
-    margin: 0 auto;
-    height: 602px;
-    width: 602px;
-    border: 1px #000000;
-    border-style: solid;
+  display: none;
+  margin: 0 auto;
+  height: 602px;
+  width: 602px;
+  border: 1px #000000;
+  border-style: solid;
   }
 
 p {
@@ -38,6 +39,7 @@ button {
 }
 
 .square {
+  display: none;
   font-size: 100px;
   text-align: center;
   color: purple;
