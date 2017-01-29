@@ -1,7 +1,5 @@
 'use strict';
 
-const poop = require('./server-stuff/events');
-
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let whichPlayer = {player: 'X'};
 let playerXWins = 0;
@@ -91,6 +89,7 @@ const xEvent = function () {
     let classNum = parseInt(classStr);
     $(this).text('o');
     gameBoard[classNum] = 'o';
+    // poop.onCreateGame();
     whichPlayer.player = 'X';
     checkWinner();
     count++;
@@ -100,6 +99,9 @@ const xEvent = function () {
     console.log(gameBoard);
   }
 };
+//I will possibly have to make new functions to seperate these functions
+//so that create game can trigger before whichPlayer.player changes.
+//make smaller functions out of each xevent and oevent.
 
 const oEvent = function () {
     event.preventDefault();
@@ -110,6 +112,7 @@ const oEvent = function () {
     let classNum = parseInt(classStr);
     $(this).text('x');
     gameBoard[classNum] = 'x';
+    // poop.onCreateGame();
     whichPlayer.player = 'O';
     count ++;
     checkWinner();

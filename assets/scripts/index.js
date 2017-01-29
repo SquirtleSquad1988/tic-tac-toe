@@ -24,8 +24,8 @@ $(document).ready(handlers.addHandlers);
 // $(document).ready(ticTacToe.createBoard());
 
 $(() => {
-  $('.square').on('click', gameUtil.oEvent);
   $('.square').on('click', gameUtil.xEvent);
+  $('.square').on('click', gameUtil.oEvent);
   $('.square').on('click', poop.onUpdateGame);
   $('.new').on('click', poop.onCreateGame);
   $('.new').on('click', gameUtil.resetGame);
@@ -41,8 +41,3 @@ $(() => {
   });
 
   });
-
-
-
-//parseInt function
-//.bind function

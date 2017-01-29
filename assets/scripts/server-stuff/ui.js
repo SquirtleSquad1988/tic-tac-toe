@@ -2,10 +2,10 @@
 
 const onSuccess = function (data) {
   // debugger;
-  if (data.book) {
-    console.log(data.book);
+  if (data.game) {
+    console.log(data.game);
   } else {
-    console.table(data.books);
+    console.table(data.games);
   }
 };
 
@@ -25,7 +25,6 @@ const onPatchSuccess = function () {
 const onPostSuccess = function (data) {
   console.log('Game was successfully posted.');
   console.log(data);
-  setTimeout(function () {alert('yay!'); }, 3000);
 };
 
 module.exports = {
