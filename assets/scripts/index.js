@@ -28,8 +28,8 @@ $(() => {
   $('.square').on('click', poop.onUpdateGame);
   $('.new').on('click', poop.onCreateGame);
   $('.reset').on('click', gameUtil.resetGame);
-
-});
+  $('.reset').on('click', poop.resetFun);
+  });
 
 
 

@@ -4,8 +4,13 @@ const api = require('./api.js');
 const ui = require('./ui.js');
 const store = require('../store');
 const index = require('../game-util');
-
 const getFormFields = require('../../../lib/get-form-fields');
+
+let haventSubmittedEnd = {over: true};
+
+const resetFun = function () {
+  haventSubmittedEnd.over = true;
+};
 
 const onShowGame = function (event) {
   event.preventDefault();
@@ -50,11 +55,17 @@ const onCreateGame = function (event) {
 };
 
 const onUpdateGame = function (event) {
-  event.preventDefault();
-  //updateUI and checkWinner
-  api.updateGame(+$(this).data('index'), index.whichPlayer.player, index.gameOver.state)
-  .then(ui.onPostSuccess)
-  .catch(ui.onError);
+  if (haventSubmittedEnd.over) {
+    event.preventDefault();
+    //updateUI and checkWinner
+    api.updateGame(+$(this).data('index'), index.whichPlayer.player, index.gameOver.state)
+    .then(ui.onPostSuccess)
+    .catch(ui.onError);
+    if (index.gameOver.state) {
+      haventSubmittedEnd.over = false;
+    }
+  }
+
 };
 
 
@@ -63,5 +74,7 @@ module.exports = {
   onJoinGame,
   onLogGame,
   onCreateGame,
-  onUpdateGame
+  onUpdateGame,
+  haventSubmittedEnd,
+  resetFun
 };

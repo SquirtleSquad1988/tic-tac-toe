@@ -1,4 +1,7 @@
 'use strict';
+
+const poop = require('./server-stuff/events');
+
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let whichPlayer = {player: 'X'};
 let playerXWins = 0;
@@ -123,4 +126,5 @@ module.exports = {
   oEvent,
   xEvent,
   resetGame,
+  checkWinner
 };
