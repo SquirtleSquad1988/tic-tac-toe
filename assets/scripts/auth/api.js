@@ -21,12 +21,12 @@ const signIn = function (data) {
 
 const passwordChange = function (data) {
   return $.ajax({
-    url: `${config.apiOrigin}/password-change/${store.user.id}`,
+    url: `${config.apiOrigin}/change-password/${store.user.id}`,
     method: 'PATCH',
     headers: {
       Authorization: `Token token=${store.user.token}`
     },
-    data
+    data: data,
   });
 };
 
