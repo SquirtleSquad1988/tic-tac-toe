@@ -16,11 +16,11 @@ const onShowGame = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
   if (data.game.id.length === 0) {
-    api.index()
+    api.showGame()
     .then(ui.onSuccess)
     .catch(ui.onError);
   } else {
-    api.show(data.game.id)
+    api.showGames(data.game.id)
     .then(ui.onSuccess)
     .catch(ui.onError);
   }

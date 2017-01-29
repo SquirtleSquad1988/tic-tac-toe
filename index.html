@@ -19,6 +19,7 @@
       <h1>Tic-Tac-Toe</h1>
 
       <div class="winner"></div>
+      <div class="log"></div>
 
       <div class="game-board">
         <div class="0 square" data-index='0'>_</div>
@@ -34,6 +35,13 @@
 
       <form class="new-game">
         <button type="submit" class="new">New Game!</button>
+      </form>
+
+      <form class="games" id="game-search">
+        <div class="form-group">
+          <input type="text" name="game[id]" placeholder="ID to search">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
       </form>
 
       <h1>API Token Auth</h1>

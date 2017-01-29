@@ -30,6 +30,10 @@ $(() => {
   $('.new').on('click', poop.onCreateGame);
   $('.new').on('click', gameUtil.resetGame);
   $('.new').on('click', poop.resetFun);
+  $('#game-search').on('submit', poop.onShowGame);
+  // $('.games').on('click', function () {
+  //   $('.log').text(poop.data.game);
+  // });
   $('.new').on('click', function () {
     event.preventDefault();
     $('.square').show();

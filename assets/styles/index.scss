@@ -6,6 +6,17 @@ h1 {
   text-align: center;
 }
 
+.log {
+  text-align: center;
+  height: 80px;
+  width: 400px;
+  border: 1px #000000;
+  display: block;
+  border-style: solid;
+  padding: 10px 0 50px 0;
+  margin: 0 auto;
+}
+
 .game-board {
   display: none;
   margin: 0 auto;
