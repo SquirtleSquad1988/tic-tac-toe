@@ -14,17 +14,19 @@ const resetFun = function () {
 
 const onShowGame = function (event) {
   event.preventDefault();
-  let data = getFormFields(event.target);
-  if (data.game.id.length === 0) {
-    api.showGame()
+  let gameId = $('#game-id').val();
+  if (gameId.length === 0) {
+    api.showGames()
     .then(ui.onSuccess)
     .catch(ui.onError);
   } else {
-    api.showGames(data.game.id)
+    api.showGame(gameId)
     .then(ui.onSuccess)
     .catch(ui.onError);
   }
 };
+
+
 
 const onJoinGame = function (event) {
   event.preventDefault();

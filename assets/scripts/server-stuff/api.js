@@ -3,7 +3,7 @@
 const config = require('../config.js');
 const store = require('../store.js');
 
-const showGame = function () {
+const showGames = function () {
   return $.ajax({
     url: config.apiOrigin + '/games',
     headers: {
@@ -13,9 +13,9 @@ const showGame = function () {
   });
 };
 
-const showGames = function () {
+const showGame = function (id) {
   return $.ajax({
-    url: config.apiOrigin + '/games/' + store.game.id,
+    url: config.apiOrigin + '/games/' + id,
     headers: {
       Authorization: `Token token=${store.user.token}`
     },
