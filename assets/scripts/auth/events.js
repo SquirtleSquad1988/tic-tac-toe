@@ -22,7 +22,7 @@ const onSignIn = function (event) {
       store.user = response.user;
       return store.user;
     })
-    .then(ui.success)
+    .then(ui.signInSuccess)
     .catch(ui.failure);
 };
 

@@ -18,6 +18,7 @@ const onShowGame = function (event) {
   if (gameId.length === 0) {
     api.showGames()
     .then(ui.onSuccess)
+    .then(ui.showSuccess)
     .catch(ui.onError);
   } else {
     api.showGame(gameId)
