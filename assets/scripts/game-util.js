@@ -77,11 +77,6 @@ const oEvent = function () {
   }
 };
 
-const gameInit = function () {
-  event.preventDefault();
-  $('.square').hide();
-  $('.game-board').hide();
-  };
 
 
 module.exports = {
@@ -91,5 +86,4 @@ module.exports = {
   xEvent,
   resetGame,
   checkWinner,
-  gameInit
 };

@@ -32,7 +32,7 @@ Game.prototype.checkVerticalWin = function (player) {
 };
 
 Game.prototype.displayBoard = function () {
-  for (let i = 0; i < this.gameBoard.length; i += 3) {
+  for (let i = 0; i < gameBoard.length; i += 3) {
     console.log(this.gameBoard[i] + ' | ' + this.gameBoard[i + 1] + ' | ' + this.gameBoard[i + 2]);
   }
 };

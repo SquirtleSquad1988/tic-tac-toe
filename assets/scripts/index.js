@@ -13,6 +13,8 @@ $(() => {
 $(document).ready(handlers.addHandlers);
 
 $(() => {
+  $('#game-id').hide();
+  $('.log').text('Please Sign In or Sign Up!');
   $('.square').on('click', gameUtil.xEvent);
   $('.square').on('click', gameUtil.oEvent);
   $('.square').on('click', poop.onUpdateGame);
@@ -24,5 +26,7 @@ $(() => {
     event.preventDefault();
     $('.square').show();
     $('.game-board').show();
+    $('#game-id').show();
+    $('.log').text('Go!');
   });
 });
