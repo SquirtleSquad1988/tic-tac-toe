@@ -31,7 +31,7 @@ const resetGame = function () {
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   count = 0;
   whichPlayer.player = 'X';
-  $('.square').text('_');
+  $('.square').text('');
   $('.winner').text('');
   gameOver.state = false;
 };
@@ -55,14 +55,12 @@ const xEvent = function () {
   event.preventDefault();
   if (checkWinner()){
     return;
-  } else if(whichPlayer.player === 'O' && $(this).text() === '_') {
-    let classStr = $(this).attr('class');
-    let classNum = parseInt(classStr);
+  } else if(whichPlayer.player === 'O' && $(this).text() === '') {
     $(this).text('o');
-    gameBoard[classNum] = 'o';
+    gameBoard[+$(this).data('index')] = 'o';
     whichPlayer.player = 'X';
-    checkWinner();
     count++;
+    checkWinner();
   }
 };
 
@@ -70,11 +68,9 @@ const oEvent = function () {
     event.preventDefault();
   if (checkWinner()) {
     return;
-  } else if (whichPlayer.player === 'X' && $(this).text() === '_') {
-    let classStr = $(this).attr('class');
-    let classNum = parseInt(classStr);
+  } else if (whichPlayer.player === 'X' && $(this).text() === '') {
     $(this).text('x');
-    gameBoard[classNum] = 'x';
+    gameBoard[+$(this).data('index')] = 'x';
     whichPlayer.player = 'O';
     count ++;
     checkWinner();
