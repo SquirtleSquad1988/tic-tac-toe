@@ -2,8 +2,6 @@
 
 let gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let whichPlayer = {player: 'X'};
-let playerXWins = 0;
-let playerOWins = 0;
 let count = 0;
 let gameOver = {state: false};
 
@@ -28,26 +26,10 @@ const checkVerticalWin = function (player) {
          winCondition(player, gameBoard[2], gameBoard[5], gameBoard[8]);
 };
 
-const displayBoard = function () {
-  for (let i = 0; i < gameBoard.length; i += 3) {
-    console.log(gameBoard[i] + ' | ' + gameBoard[i + 1] + ' | ' + gameBoard[i + 2]);
-  }
-};
-
-const playerTurn = function () {
-  if (count % 2 === 0) {
-    console.log('Player X select index to mutate');
-  } else {
-    console.log('Player O select index to mutate');
-  }
-  displayBoard();
-};
-
 const resetGame = function () {
   event.preventDefault();
   gameBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   count = 0;
-  playerTurn(count);
   whichPlayer.player = 'X';
   $('.square').text('_');
   $('.winner').text('');
@@ -56,29 +38,18 @@ const resetGame = function () {
 
 const checkWinner = function () {
   if (checkHorizontalWin('x') || checkVerticalWin('x') || checkDiagonalWin('x')) {
-    console.log('X is the winner');
-    displayBoard();
-    playerXWins += 1;
     $('.winner').text('X Wins!');
     gameOver.state = true;
     return true;
   } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
-    displayBoard();
-    console.log('O is the winner');
     $('.winner').text('O Wins!');
-    playerOWins += 1;
     gameOver.state = true;
     return true;
   } else if (count === 9) {
     $('.winner').text('Draw!');
-    displayBoard();
-    console.log('Draw!');
     gameOver.state = true;
-  } else {
-    playerTurn(count);
   }
 };
-
 
 const xEvent = function () {
   event.preventDefault();
@@ -89,19 +60,11 @@ const xEvent = function () {
     let classNum = parseInt(classStr);
     $(this).text('o');
     gameBoard[classNum] = 'o';
-    // poop.onCreateGame();
     whichPlayer.player = 'X';
     checkWinner();
     count++;
-    console.log(count);
-    console.log('classStr:' + classStr);
-    console.log('classNum:' + classNum);
-    console.log(gameBoard);
   }
 };
-//I will possibly have to make new functions to seperate these functions
-//so that create game can trigger before whichPlayer.player changes.
-//make smaller functions out of each xevent and oevent.
 
 const oEvent = function () {
     event.preventDefault();
@@ -112,14 +75,9 @@ const oEvent = function () {
     let classNum = parseInt(classStr);
     $(this).text('x');
     gameBoard[classNum] = 'x';
-    // poop.onCreateGame();
     whichPlayer.player = 'O';
     count ++;
     checkWinner();
-    console.log(count);
-    console.log('classStr:' + classStr);
-    console.log('classNum:' + classNum);
-    console.log(gameBoard);
   }
 };
 
