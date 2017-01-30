@@ -25,7 +25,7 @@ const onPatchSuccess = function () {
 };
 
 const onPostSuccess = function (data) {
-  console.log(data);
+  $('.winner').text('You are now playing game id: ' + data);
 };
 
 

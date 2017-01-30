@@ -12,9 +12,13 @@ h1 {
   width: 400px;
   border: 1px #000000;
   display: block;
-  border-style: solid;
   padding: 10px 0 50px 0;
   margin: 0 auto;
+  font-size: 20px;
+}
+
+.cred {
+  float: left;
 }
 
 .game-board {
@@ -34,11 +38,26 @@ p {
   display: none;
 }
 
-button {
-  padding: 30px 0 30px 0;
+.credential-status {
+  display: block;
   margin: 0 auto;
-  height: 100px;
-  width: 100px;
+  height: 50px;
+  width: 200px;
+  border: 1px #000000;
+}
+
+.top {
+  text-align: center;
+  height: 150px;
+  width: 100%;
+  border: 1px #000000;
+  display: block;
+  margin: 0 auto;
+}
+
+
+#sign-out {
+  float: right;
 }
 
 .winner {
@@ -47,8 +66,24 @@ button {
   width: 400px;
   border: 1px #000000;
   display: block;
-  border-style: solid;
   padding: 10px 0 50px 0;
+  margin: 0 auto;
+  font-size: 25px;
+}
+
+.games {
+  float: right;
+  width: 150px;
+  height: 75px;
+  padding: 30px 0 30px 0;
+  margin: 0 auto;
+}
+
+.new-game {
+  float: left;
+  width: 75px;
+  height: 75px;
+  padding: 30px 0 30px 0;
   margin: 0 auto;
 }
 

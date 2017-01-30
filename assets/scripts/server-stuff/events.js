@@ -26,8 +26,6 @@ const onShowGame = function (event) {
   }
 };
 
-
-
 const onJoinGame = function (event) {
   event.preventDefault();
   let data = getFormFields(event.target);
@@ -51,16 +49,17 @@ const onCreateGame = function (event) {
   api.createGame(data)
   .then((response) => {
     store.game = response.game;
-  })
-  .then(ui.onPostSuccess)
-  .catch(ui.onError);
+    ui.onPostSuccess(response.game.id);
+  });
+//   .then(ui.onPostSuccess)
+//   .catch(ui.onError);
 };
 
 const onUpdateGame = function (event) {
   if (haventSubmittedEnd.over) {
     event.preventDefault();
     api.updateGame(+$(this).data('index'), $(this).text(), index.gameOver.state)
-    .then(ui.onPostSuccess)
+    .then(ui.onPatchSuccess)
     .catch(ui.onError);
     if (index.gameOver.state) {
       haventSubmittedEnd.over = false;

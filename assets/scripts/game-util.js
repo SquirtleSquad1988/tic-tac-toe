@@ -40,13 +40,16 @@ const checkWinner = function () {
   if (checkHorizontalWin('x') || checkVerticalWin('x') || checkDiagonalWin('x')) {
     $('.winner').text('X Wins!');
     gameOver.state = true;
+    $('.log').text('Play Again?');
     return true;
   } else if (checkHorizontalWin('o') || checkVerticalWin('o') || checkDiagonalWin('o')) {
     $('.winner').text('O Wins!');
     gameOver.state = true;
+    $('.log').text('Play Again?');
     return true;
   } else if (count === 9) {
     $('.winner').text('Draw!');
+    $('.log').text('Play Again?');
     gameOver.state = true;
   }
 };
