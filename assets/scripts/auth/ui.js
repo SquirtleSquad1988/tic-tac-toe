@@ -17,8 +17,8 @@ const signInFailure = () => {
 };
 
 const signUpSuccess = () => {
-    $('.log').text('Welcome! Please Select New Game!');
-    $('.credential-status').text('Welcome! Please Select New Game!');
+    $('.log').text('Welcome! Please Sign In!');
+    $('.credential-status').text('Welcome! Please Sign In!');
 };
 
 const signUpFailure = () => {

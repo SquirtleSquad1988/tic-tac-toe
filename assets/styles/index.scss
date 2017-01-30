@@ -26,8 +26,8 @@ h1 {
 .game-board {
   display: none;
   margin: 0 auto;
-  height: 602px;
-  width: 602px;
+  height: 452px;
+  width: 452px;
   border: 1px #000000;
   border-style: solid;
   }
@@ -44,14 +44,14 @@ p {
   font-family: 'Montserrat Subrayada', sans-serif;
   display: block;
   margin: 0 auto;
-  height: 50px;
-  width: 200px;
+  height: 75px;
+  width: 300px;
   border: 1px #000000;
 }
 
 .top {
   text-align: center;
-  height: 150px;
+  height: 75px;
   width: 100%;
   border: 1px #000000;
   display: block;
@@ -94,11 +94,11 @@ p {
 .square {
   font-family: 'Montserrat Subrayada', sans-serif;
   display: none;
-  font-size: 130px;
+  font-size: 120px;
   text-align: center;
   color: black;
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
   display: block;
   border: 1px #000000;
   border-style: solid;
