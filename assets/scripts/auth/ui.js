@@ -19,6 +19,8 @@ const signInFailure = () => {
 const signUpSuccess = () => {
     $('.log').text('Welcome! Please Sign In!');
     $('.credential-status').text('Welcome! Please Sign In!');
+    // close modal
+    // $('.modal').modal('hide')
 };
 
 const signUpFailure = () => {
