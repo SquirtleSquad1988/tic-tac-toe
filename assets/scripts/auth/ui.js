@@ -10,6 +10,7 @@ const signInSuccess = () => {
   $('#game-id').show();
   $('.credential-status').text('Click New Game to Begin');
   $('#sign-out').show();
+  $('.bs-example-modal-lg').modal('hide');
 };
 
 const signInFailure = () => {
