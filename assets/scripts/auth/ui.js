@@ -37,7 +37,7 @@ const changePasswordSuccess = () => {
   $('.change-password-modal').modal('hide');
 };
 
-const changePasswordFailure = () => {
+const passwordChangeFailure = () => {
     $('.log').text('Please Try Again');
     $('.credential-status').text('Please Try Again');
 };
@@ -59,7 +59,7 @@ module.exports = {
   signInSuccess,
   signUpFailure,
   signInFailure,
-  changePasswordFailure,
+  passwordChangeFailure,
   signOutSuccess,
   signUpSuccess,
 };
