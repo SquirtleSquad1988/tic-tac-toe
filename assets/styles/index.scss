@@ -57,6 +57,7 @@ p {
   border: 1px #000000;
   display: block;
   margin: 0 auto;
+  padding: 2px;
 }
 
 
@@ -92,12 +93,24 @@ p {
   margin: 0 auto;
 }
 
+.x-color {
+  color: black;
+}
+
+.o-color {
+  color: black;
+}
+
+.highlight {
+  background-color: #C0C0C0;
+}
+
+
 .square {
   font-family: 'Montserrat Subrayada', sans-serif;
   display: none;
   font-size: 120px;
   text-align: center;
-  color: black;
   height: 150px;
   width: 150px;
   display: block;

@@ -65,7 +65,6 @@ const onUpdateGame = function (event) {
       haventSubmittedEnd.over = false;
     }
   }
-
 };
 
 

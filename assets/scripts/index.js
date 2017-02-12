@@ -12,6 +12,15 @@ $(() => {
 
 $(document).ready(handlers.addHandlers);
 
+$(document).ready(function() {
+  $('.square').on('mouseenter', function() {
+    $(this).addClass('highlight');
+  });
+  $('.square').on('mouseleave', function () {
+    $(this).removeClass('highlight');
+  });
+});
+
 $(() => {
   $('#sign-out').hide();
   $('#game-id').hide();

@@ -33,7 +33,10 @@ const resetGame = function () {
   whichPlayer.player = 'X';
   $('.square').text('');
   $('.winner').text('');
+  $('.square').removeClass('x-color');
+  $('.square').removeClass('o-color');
   gameOver.state = false;
+
 };
 
 const checkWinner = function () {
@@ -60,6 +63,7 @@ const xEvent = function () {
     return;
   } else if(whichPlayer.player === 'O' && $(this).text() === '') {
     $(this).text('o');
+    $(this).addClass('o-color')
     gameBoard[+$(this).data('index')] = 'o';
     whichPlayer.player = 'X';
     count++;
@@ -73,6 +77,7 @@ const oEvent = function () {
     return;
   } else if (whichPlayer.player === 'X' && $(this).text() === '') {
     $(this).text('x');
+    $(this).addClass('x-color');
     gameBoard[+$(this).data('index')] = 'x';
     whichPlayer.player = 'O';
     count ++;
