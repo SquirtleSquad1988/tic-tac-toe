@@ -9,6 +9,7 @@ const signInSuccess = () => {
   $('#game-search').show();
   $('#game-id').show();
   $('.credential-status').text('Click New Game to Begin');
+  $('#sign-out').show();
 };
 
 const signInFailure = () => {
@@ -47,6 +48,7 @@ const signOutSuccess = () => {
   $('.game-board').hide();
   $('.credential-status').text('Please Sign In or Sign Up!');
   $('.winner').text('');
+  $('#sign-out').hide();
 };
 
 module.exports = {

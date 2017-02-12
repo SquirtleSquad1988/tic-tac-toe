@@ -13,6 +13,7 @@ $(() => {
 $(document).ready(handlers.addHandlers);
 
 $(() => {
+  $('#sign-out').hide();
   $('#game-id').hide();
   $('.log').text('Please Sign In or Sign Up!');
   $('.square').on('click', gameUtil.xEvent);
