@@ -18,11 +18,11 @@ const onShowGame = function (event) {
   if (gameId.length === 0) {
     api.showGames()
     .then(ui.showGames)
-    .catch(ui.onError);
+    .catch(ui.onShowError);
   } else {
     api.showGame(gameId)
     .then(ui.showGame)
-    .catch(ui.onError);
+    .catch(ui.onShowError);
   }
 };
 
