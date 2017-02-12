@@ -14,8 +14,7 @@
     <body class="container-fluid">
 
       <div class="top">
-        <button type="button" class="btn btn-primary cred" data-toggle="modal" data-target=".bs-example-modal-lg">Sign Up/Sign In/Change Password</button>
-          <!-- change generic data-target for seperate modals so when one is opened the others stay closed ^ -->
+        <!-- <button type="button" class="btn btn-primary cred" data-toggle="modal" data-target=".bs-example-modal-lg">Sign Up/Sign In/Change Password</button>
         <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -72,10 +71,89 @@
               <div class="credential-status"></div>
             </div>
           </div>
+        </div> -->
+
+        <div class="authentication">
+          <button type="button" class="btn btn-primary cred" data-toggle="modal" data-target=".sign-up-modal">Sign Up</button>
+          <div class="modal fade sign-up-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <form id="sign-up">
+                  <fieldset>
+                    <legend>Sign up!</legend>
+                    <label>
+                      Email
+                      <input type="text" name="credentials[email]">
+                    </label>
+                    <label>
+                      password
+                      <input type="password" name="credentials[password]">
+                    </label>
+                    <label>
+                      Password Confirmation
+                      <input type="password" name="credentials[password_confirmation]">
+                    </label>
+                    <input type="submit" name="submit" value="Sign up!">
+                  </fieldset>
+                </form>
+                <div class="credential-status"></div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary cred" data-toggle="modal" data-target=".sign-in-modal">Sign In</button>
+          <div class="modal fade sign-in-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <form id="sign-in">
+                  <fieldset>
+                    <legend>Sign in!</legend>
+                    <label>
+                      Email
+                      <input type="text" name="credentials[email]">
+                    </label>
+                    <label>
+                      password
+                      <input type="password" name="credentials[password]">
+                    </label>
+                    <input type="submit" name="submit" value="Sign in!">
+                  </fieldset>
+                </form>
+                <div class="credential-status"></div>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary cred" data-toggle="modal" data-target=".change-password-modal">Change Password</button>
+          <div class="modal fade change-password-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <form id="change-password">
+                  <fieldset>
+                    <legend>Change Password</legend>
+                    <label>
+                      Email
+                      <input type="text" name="credentials[email]">
+                    </label>
+                    <label>
+                      Old Password
+                      <input type="password" name="passwords[old]">
+                    </label>
+                    <label>
+                      New Password
+                      <input type="password" name="passwords[new]">
+                    </label>
+                    <input type="submit" name="submit" value="Change Password">
+                  </fieldset>
+                </form>
+                <div class="credential-status"></div>
+              </div>
+            </div>
+          </div>
         </div>
+
         <form id="sign-out">
           <fieldset>
-            <legend> </legend>
             <input type="submit" name="submit" value="Sign Out!">
           </fieldset>
         </form>

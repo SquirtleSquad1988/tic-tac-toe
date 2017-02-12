@@ -10,7 +10,7 @@ const signInSuccess = () => {
   $('#game-id').show();
   $('.credential-status').text('Click New Game to Begin');
   $('#sign-out').show();
-  $('.bs-example-modal-lg').modal('hide');
+  $('.sign-in-modal').modal('hide');
 };
 
 const signInFailure = () => {
@@ -21,8 +21,9 @@ const signInFailure = () => {
 const signUpSuccess = () => {
     $('.log').text('Welcome! Please Sign In!');
     $('.credential-status').text('Welcome! Please Sign In!');
+    $('.sign-up-modal').modal('hide');
     // close modal
-    // $('.modal').modal('hide')
+    // $('.modalTarget').modal('hide')
 };
 
 const signUpFailure = () => {
@@ -33,6 +34,7 @@ const signUpFailure = () => {
 const changePasswordSuccess = () => {
   $('.log').text('Password Successfully Changed');
   $('.credential-status').text('Password Successfully Changed');
+  $('.change-password-modal').modal('hide');
 };
 
 const changePasswordFailure = () => {
