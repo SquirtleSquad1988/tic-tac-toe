@@ -41,6 +41,12 @@ I only finished the project Sunday night so I wasn't really able to fully
 consider styling and layout after the initial requirements were complete. As a
 result, only one wireframe was created:
 
+11-Feb-2017:
+Improved up the UX by disabling the sign out feature while the user is not
+signed in. Also separated authorization functions into separate modals that
+fade away when each action is successfully performed. Finally added some stying
+of the game board itself.
+
 Wireframe:
 http://imgur.com/a/XyZtJ
 
